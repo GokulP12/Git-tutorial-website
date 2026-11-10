@@ -1,69 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Beautiful Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gokul P. | IT Engineer Portfolio</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        body{
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:linear-gradient(135deg, #667eea, #764ba2);
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .container{
-            text-align:center;
-            background:white;
-            padding:50px;
-            border-radius:20px;
-            box-shadow:0 10px 30px rgba(0,0,0,0.2);
-            width:400px;
-        }
+html { scroll-behavior: smooth; }
 
-        h1{
-            color:#333;
-            margin-bottom:15px;
-        }
+body {
+    background: #080b14;
+    color: #f5f7ff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
 
-        p{
-            color:#666;
-            margin-bottom:25px;
-        }
+:root {
+    --blue: #38bdf8;
+    --purple: #a78bfa;
+    --muted: #929bb0;
+    --glass: rgba(255,255,255,0.045);
+}
 
-        button{
-            background:#667eea;
-            color:white;
-            border:none;
-            padding:12px 25px;
-            border-radius:25px;
-            cursor:pointer;
-            font-size:16px;
-            transition:0.3s;
-        }
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
 
-        button:hover{
-            background:#764ba2;
-            transform:scale(1.05);
-        }
-    </style>
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,11,20,0.8);
+    backdrop-filter: blur(15px);
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.logo {
+    font-family: 'Space Grotesk';
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.logo span { color: var(--blue); }
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 13px;
+    transition: .3s;
+}
+
+nav a:hover { color: var(--blue); }
+
+.menu {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+section {
+    padding: 110px 10%;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    padding-top: 140px;
+}
+
+.hero-content { max-width: 650px; }
+
+.tag {
+    color: var(--blue);
+    letter-spacing: 3px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk';
+    font-size: clamp(48px, 7vw, 83px);
+    line-height: 1.08;
+    margin-bottom: 20px;
+}
+
+.gradient {
+    background: linear-gradient(90deg,#38bdf8,#a78bfa);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero h2 {
+    color: #cbd5e1;
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 570px;
+    font-size: 15px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.primary {
+    background: linear-gradient(90deg,#38bdf8,#818cf8);
+    color: #07111e;
+}
+
+.secondary {
+    border: 1px solid #38445a;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px #38bdf833;
+}
+
+.profile {
+    width: 290px;
+    height: 290px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background: linear-gradient(#080b14,#080b14) padding-box,
+                linear-gradient(135deg,#38bdf8,#a78bfa) border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 80px #38bdf822;
+    animation: float 4s ease-in-out infinite;
+}
+
+.profile-inner {
+    width: 255px;
+    height: 255px;
+    border-radius: 50%;
+    background: radial-gradient(circle,#172c4d,#101321 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 85px;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+}
+
+.section-title {
+    font-family: 'Space Grotesk';
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.section-sub {
+    color: var(--muted);
+    margin-bottom: 45px;
+    line-height: 1.8;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 35px;
+}
+
+.card {
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,.08);
+    padding: 30px;
+    border-radius: 15px;
+    transition: .35s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: #38bdf866;
+    box-shadow: 0 15px 40px #0005;
+}
+
+.card p {
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+.card h3 {
+    margin-bottom: 18px;
+    font-family: 'Space Grotesk';
+}
+
+.focus-list {
+    display: grid;
+    gap: 17px;
+}
+
+.focus-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #dce6f8;
+    font-size: 14px;
+}
+
+.focus-item span { font-size: 20px; }
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.skill {
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    padding: 24px;
+    transition: .3s;
+}
+
+.skill:hover {
+    border-color: var(--purple);
+    transform: translateY(-6px);
+}
+
+.skill .icon {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.skill h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.skill p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 22px;
+}
+
+.project {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-number {
+    color: var(--blue);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.project h3 {
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.project p {
+    margin-bottom: 20px;
+}
+
+.tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech span {
+    background: #38bdf814;
+    border: 1px solid #38bdf833;
+    color: #7dd3fc;
+    padding: 7px 10px;
+    font-size: 11px;
+    border-radius: 5px;
+}
+
+.timeline {
+    border-left: 2px solid #26364e;
+    margin-left: 8px;
+    padding-left: 30px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--blue);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--blue);
+}
+
+.timeline-item h3 { margin-bottom: 8px; }
+
+.timeline-item p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.contact-box {
+    text-align: center;
+    padding: 65px 30px;
+    background: linear-gradient(135deg,#14233d,#17132d);
+    border: 1px solid #38bdf833;
+    border-radius: 20px;
+}
+
+.contact-box h2 {
+    font-family: 'Space Grotesk';
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.contact-box p {
+    color: var(--muted);
+    margin-bottom: 30px;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+    border-top: 1px solid #ffffff10;
+    color: #778198;
+    font-size: 12px;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: all .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media(max-width:850px) {
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #101522;
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    nav ul.show { display: flex; }
+    .menu { display: block; }
+    .hero { flex-direction: column-reverse; text-align: center; }
+    .hero-content { display: flex; flex-direction: column; align-items: center; }
+    .profile { width: 230px; height: 230px; }
+    .profile-inner { width: 200px; height: 200px; }
+    .about-grid,.projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media(max-width:500px) {
+    section { padding: 85px 7%; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 30px; }
+    .contact-box h2 { font-size: 29px; }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h1>Welcome to My Website</h1>
-        <p>This is a beautiful responsive webpage designed using HTML and CSS.</p>
-        <button>Get Started</button>
+<canvas id="particles"></canvas>
+
+<nav>
+    <div class="logo">GOKUL<span>.</span></div>
+    <div class="menu" onclick="toggleMenu()">☰</div>
+    <ul id="navLinks">
+        <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+        <li><a href="#about" onclick="toggleMenu()">About</a></li>
+        <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+        <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+        <li><a href="#journey" onclick="toggleMenu()">Journey</a></li>
+        <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <div class="tag">WELCOME TO MY DIGITAL WORLD</div>
+
+        <h1>
+            Hi, I'm<br>
+            <span class="gradient">Gokul P.</span>
+        </h1>
+
+        <h2>IT Systems Administrator</h2>
+
+        <p>
+            Passionate about building, managing and securing IT infrastructure.
+            I enjoy solving complex technical challenges and exploring the
+            world of Linux, Networking, DevOps and Cybersecurity.
+        </p>
+
+        <div class="buttons">
+            <a href="#projects" class="btn primary">Explore My Work ↗</a>
+            <a href="#contact" class="btn secondary">Get In Touch</a>
+        </div>
     </div>
+
+    <div class="profile">
+        <div class="profile-inner">👨‍💻</div>
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" class="reveal">
+    <div class="tag">01 / ABOUT ME</div>
+    <h2 class="section-title">Who Am I?</h2>
+    <p class="section-sub">A little introduction about my professional world.</p>
+
+    <div class="about-grid">
+        <div class="card">
+            <h3>My Story</h3>
+            <p>
+                I'm an IT professional with hands-on experience in system
+                administration, IT infrastructure, network troubleshooting
+                and server management.
+                <br><br>
+                I believe technology is not just about fixing problems.
+                It's about understanding how systems work, finding smarter
+                solutions and continuously improving.
+                <br><br>
+                My goal is to grow into the fields of DevOps Engineering
+                and Cybersecurity while strengthening my networking
+                and infrastructure knowledge.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>What Drives Me</h3>
+            <div class="focus-list">
+                <div class="focus-item"><span>🖥️</span> Infrastructure Management</div>
+                <div class="focus-item"><span>🌐</span> Networking & Firewalls</div>
+                <div class="focus-item"><span>🐧</span> Linux Administration</div>
+                <div class="focus-item"><span>🔐</span> Cybersecurity</div>
+                <div class="focus-item"><span>⚙️</span> DevOps & Automation</div>
+                <div class="focus-item"><span>🚀</span> Continuous Learning</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills" class="reveal">
+    <div class="tag">02 / TECHNICAL EXPERTISE</div>
+    <h2 class="section-title">My Technical Arsenal</h2>
+    <p class="section-sub">Technologies and tools I work with and continue to explore.</p>
+
+    <div class="skills-grid">
+
+        <div class="skill">
+            <div class="icon">🐧</div>
+            <h3>Linux Administration</h3>
+            <p>Ubuntu, Red Hat fundamentals, users, permissions, services and shell scripting.</p>
+        </div>
+
+        <div class="skill">
+            <div class="icon">🌐</div>
+            <h3>Networking</h3>
+            <p>TCP/IP, DNS, DHCP, VLANs, routing, switching and troubleshooting.</p>
+        </div>
+
+        <div class="skill">
+            <div class="icon">🛡️</div>
+            <h3>Firewall & Security</h3>
+            <p>pfSense, NAT, firewall rules, VPN, access control and network security.</p>
+        </div>
+
+        <div class="skill">
+            <div class="icon">🐳</div>
+            <h3>DevOps</h3>
+            <p>Docker, Jenkins, Git, CI/CD fundamentals and automation.</p>
+        </div>
+
+        <div class="skill">
+            <div class="icon">📊</div>
+            <h3>Monitoring</h3>
+            <p>Grafana, Prometheus, Node Exporter and server monitoring.</p>
+        </div>
+
+        <div class="skill">
+            <div class="icon">🖥️</div>
+            <h3>System Administration</h3>
+            <p>Windows Server, Active Directory, GPO, user management and support.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects" class="reveal">
+    <div class="tag">03 / MY WORK</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-sub">Practical infrastructure and automation projects.</p>
+
+    <div class="projects-grid">
+
+        <div class="card project">
+            <div class="project-number">PROJECT 01</div>
+            <h3>Firewall & Network Security</h3>
+            <p>
+                Configuring pfSense firewall policies, NAT, VLAN segmentation,
+                VPN connectivity and network access controls.
+            </p>
+            <div class="tech">
+                <span>pfSense</span>
+                <span>Networking</span>
+                <span>VPN</span>
+                <span>Firewall</span>
+            </div>
+        </div>
+
+        <div class="card project">
+            <div class="project-number">PROJECT 02</div>
+            <h3>Server Monitoring System</h3>
+            <p>
+                Building a centralized monitoring environment to track
+                Linux server health, CPU, memory, disk and application status.
+            </p>
+            <div class="tech">
+                <span>Grafana</span>
+                <span>Prometheus</span>
+                <span>Linux</span>
+                <span>Docker</span>
+            </div>
+        </div>
+
+        <div class="card project">
+            <div class="project-number">PROJECT 03</div>
+            <h3>Active Directory Infrastructure</h3>
+            <p>
+                Implementing centralized user authentication, organizational
+                units, group policies and Windows client management.
+            </p>
+            <div class="tech">
+                <span>Samba AD</span>
+                <span>Ubuntu</span>
+                <span>GPO</span>
+                <span>Windows</span>
+            </div>
+        </div>
+
+        <div class="card project">
+            <div class="project-number">PROJECT 04</div>
+            <h3>CI/CD Automation</h3>
+            <p>
+                Developing a continuous integration and deployment workflow
+                using GitHub, Jenkins and Docker.
+            </p>
+            <div class="tech">
+                <span>Jenkins</span>
+                <span>GitHub</span>
+                <span>Docker</span>
+                <span>AWS</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- JOURNEY -->
+
+<section id="journey" class="reveal">
+    <div class="tag">04 / MY JOURNEY</div>
+    <h2 class="section-title">Career & Learning Journey</h2>
+    <p class="section-sub">Growing through experience, experimentation and learning.</p>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <h3>IT Support & System Administration</h3>
+            <p>
+                Working with IT infrastructure, user support,
+                Windows systems, servers and network troubleshooting.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Networking & Infrastructure</h3>
+            <p>
+                Developing practical knowledge in routing, switching,
+                firewalls, VLANs, VPNs and server infrastructure.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Linux & DevOps Engineering</h3>
+            <p>
+                Exploring Linux administration, Git, Docker,
+                Jenkins, CI/CD pipelines and cloud technologies.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Future Vision</h3>
+            <p>
+                Becoming a skilled infrastructure and DevOps professional
+                with strong cybersecurity knowledge.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="reveal">
+    <div class="contact-box">
+        <div class="tag">05 / LET'S CONNECT</div>
+        <h2>Have a Project in Mind?</h2>
+        <p>
+            Always open to learning, collaborating and exploring
+            new opportunities in the world of technology.
+        </p>
+
+        <!-- Replace with your actual email -->
+        <a href="mailto:yourmail@example.com" class="btn primary">
+            Say Hello ↗
+        </a>
+    </div>
+</section>
+
+<footer>
+    © 2026 Gokul P. | Built with Passion & Technology 🚀
+</footer>
+
+<script>
+// Mobile navigation
+function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('show');
+}
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Animated particles
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+let particles = [];
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+for(let i = 0; i < 65; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 0.5,
+        speed: Math.random() * 0.5 + 0.15
+    });
+}
+
+function animateParticles() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p => {
+        p.y -= p.speed;
+
+        if(p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+        ctx.fillStyle = 'rgba(56,189,248,0.6)';
+        ctx.fill();
+    });
+
+    requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+</script>
 
 </body>
 </html>
+
